@@ -9,7 +9,7 @@ class RoomChannel < ApplicationCable::Channel
   end
 
   def say(data)
-		Message.create!(content: data['message'], contributor: data['contributor'])
+		Message.create!(content: data['message'], contributor: data['contributor'], room_id: data['room'])
 		ActionCable.server.broadcast 'room_channel', message: data['message']
   end
 

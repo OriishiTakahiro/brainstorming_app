@@ -1,8 +1,13 @@
-%div{class: :message}
-  %p
-    = "#{message.id} #{message.content}"
-    %br
-    = "投稿者「#{message.contributor}」 得票数 #{message.voted}"
-    %br
-    = "投稿日時 :#{message.updated_at}"
-    %input{ type: :button, value: '投票', id: "#{message.id}", name: :vote }
+%tr
+  %th
+    = message.id
+  %th
+    = message.content
+  %th
+    = message.voted
+  %th
+    %input{ type: :button, value: '投票', id: "#{message.id}", name: :vote, class: 'btn btn-default' }
+  %th
+    = message.contributor
+  %th
+    = message.updated_at

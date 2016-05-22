@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
 
-	root to: 'rooms#show'
+	root to: 'rooms#list'
 
+  get 'rooms/list'
   get 'rooms/show'
+  post 'rooms/new'
 
 	mount ActionCable.server => '/cable'
 
