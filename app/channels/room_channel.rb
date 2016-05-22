@@ -12,4 +12,9 @@ class RoomChannel < ApplicationCable::Channel
 		Message.create!(content: data['message'], contributor: data['contributor'])
 		ActionCable.server.broadcast 'room_channel', message: data['message']
   end
+
+	def vote(data)
+		message = Message.find_by(id: data['id'])
+		message.update( voted: (message.voted+1) )
+	end
 end

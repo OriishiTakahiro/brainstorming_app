@@ -5,6 +5,7 @@ App.room = App.cable.subscriptions.create "RoomChannel", {
     # Called when the subscription has been terminated by the server
   received: (data) ->	$('#messages').append data['message']
 	say: (message, contributor) -> @perform 'say', { message: message, contributor: contributor }
+	vote: (id) -> @perform 'vote', { id: id }
 	}
 
 $(document).on 'click', (event) ->
@@ -13,3 +14,5 @@ $(document).on 'click', (event) ->
 		contributor =  document.getElementById("input-contributor").value
 		document.getElementById("input-idea").value = ''
 		App.room.say(message, contributor)
+	if(event.target.name == 'vote')
+		App.room.vote(event.target.id)
