@@ -1,0 +1,15 @@
+%h1 ブレインストーミングの部屋
+= "投稿数:#{@messages.size}"
+
+%div{ id: :messages }
+  = render @messages
+
+%form{ id: 'message-form' }
+  %h3 入力フォーム
+  %label アイデア
+  %input{ type: :text, id: 'input-idea' }
+  %br
+  %label 投稿者名
+  %input{ type: :text, id: 'input-contributor' }
+  %br
+  %input{ type: :button, value: '送信', id: 'send-btn' }
