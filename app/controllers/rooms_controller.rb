@@ -1,7 +1,7 @@
 class RoomsController < ApplicationController
 
 	def list
-		@rooms = Room.all.order("updated_at DESC")
+		@rooms = Room.all
 	end
 
   def show
