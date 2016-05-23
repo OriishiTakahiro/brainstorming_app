@@ -1,7 +1,7 @@
 %tr
   %th
-    %input{ type: :button, id: "fav-#{message.id}", name: :fav }
-  %th
+    %button{ class: 'btn btn-default' }
+      %i{ type: :button, class: 'glyphicon glyphicon-copy' }
     = message.content
   %th
     %div{ id: "voted-#{message.id}" }

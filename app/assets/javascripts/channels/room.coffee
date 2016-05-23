@@ -1,6 +1,4 @@
 receivedDat = (data) ->
-		console.log data
-		console.log data['message']
 		if( data['message'] )
 			$('#msg-table').prepend data['message']
 			$('#count-idea').text(data['count'] + " ideas")
@@ -17,6 +15,7 @@ App.room = App.cable.subscriptions.create "RoomChannel", {
 	vote: (id) -> @perform 'vote', { id: id }
 	}
 
+# get text from each input-form and post message information via App.room.say
 sayMsg = ->
 	message = document.getElementById("input-idea").value
 	contributor = document.getElementById("input-contributor").value
@@ -30,6 +29,9 @@ $(document).on 'click', (event) ->
 	if(event.target.name == 'vote')
 		App.room.vote(event.target.id)
 
-$(document).on 'keypress', (event) ->
-	if(event.keyCode is 13)
-		sayMsg
+# execute sayMsg() when pressed Ctrl + Enter
+$ ->
+	$('#input-idea').on( 'keypress', (event) ->
+		if(event.ctrlKey && event.which is 13)
+			sayMsg()
+)
