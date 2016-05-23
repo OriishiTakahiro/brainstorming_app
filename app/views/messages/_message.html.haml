@@ -1,10 +1,11 @@
 %tr
   %th
-    = message.id
+    %input{ type: :button, id: "fav-#{message.id}", name: :fav }
   %th
     = message.content
   %th
-    = message.voted
+    %div{ id: "voted-#{message.id}" }
+      = message.voted
   %th
     %input{ type: :button, value: '投票', id: "#{message.id}", name: :vote, class: 'btn btn-default' }
   %th

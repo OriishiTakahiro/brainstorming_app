@@ -1,11 +1,11 @@
 class RoomsController < ApplicationController
 
 	def list
-		@rooms = Room.all
+		@rooms = Room.all.order('id DESC')
 	end
 
   def show
-		@messages = Message.where(room_id: params[:id])
+		@messages = Message.where(room_id: params[:id]).order('id DESC')
 		@room = Room.find_by(id: params[:id])
 		@room.update( name: @room.name )
   end

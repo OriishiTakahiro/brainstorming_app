@@ -1,32 +1,32 @@
 %div{ class: 'center-block' }
-  %h1
+  %h3
     = @room.name
-  = "投稿数:#{@messages.size}"
+  %h4
+    %div{id: 'count-idea'}
+      = "#{@messages.size} ideas"
 
-  %table{ id: 'msg-table', class: 'table table-striped table-hover' }
-    %thead
-      %tr
-        %th #
-        %th 投稿内容
-        %th 得票数
-        %th 投稿
-        %th 投稿者
-        %th 投稿日時
-    %tbody
-      %div{ id: :messages }
-        = render @messages
-
-  %div{ class: 'panel panel-info' }
-    %div{ class: 'panel-info heading' }
-      %div{ class: 'panel-title' }
-        %h3 アイデア入力フォーム
-    %div{ class: 'panel-body' }
+  %p
+    %div{class: 'container'}
       %form{ id: 'message-form' }
+        %input{ type: :hidden, id: 'input-room', value: @room.id }
         %label アイデア
         %input{ type: :text, id: 'input-idea', class: 'form-control' }
-        %br
-        %label 投稿者名
+        %label 発案者名
         %input{ type: :text, id: 'input-contributor', class: 'form-control' }
         %br
-        %input{ type: :hidden, id: 'input-room', value: @room.id }
         %input{ type: :button, value: '送信', id: 'send-btn', class: 'btn btn-primary' }
+
+  %div{class: :container}
+    %div{class: 'table-responsive', style: 'height:380px;overflow-y:scroll'}
+      %table{ id: 'msg-table', class: 'table table-striped table-hover table-headerfixed' }
+        %thead
+          %tr
+            %th
+            %th 投稿内容
+            %th 得票数
+            %th 投稿
+            %th 発案者
+            %th 投稿日時
+        %tbody
+          %div{ id: :messages }
+            = render @messages
