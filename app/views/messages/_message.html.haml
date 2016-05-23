@@ -1,8 +1,8 @@
 %tr
   %th
-    %button{ class: 'btn btn-default' }
-      %i{ type: :button, class: 'glyphicon glyphicon-copy' }
-    = message.content
+    %button{ id: "copy-#{message.id}", name: :copy, class: 'glyphicon glyphicon-copy' }
+    %span{ id: "message-copy-#{message.id}" }
+      = message.content
   %th
     %div{ id: "voted-#{message.id}" }
       = message.voted
