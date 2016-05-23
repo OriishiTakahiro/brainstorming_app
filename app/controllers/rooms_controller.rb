@@ -1,7 +1,9 @@
 class RoomsController < ApplicationController
 
 	def list
-		@rooms = Room.all.order('id DESC')
+		page = params.has_key?(:page) ? params[:page] : 1
+		@rooms = Room.page(page).per(8).order('id DESC')
+		@count = Room.count
 	end
 
   def show

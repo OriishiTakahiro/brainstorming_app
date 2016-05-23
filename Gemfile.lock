@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/amatsuda/kaminari.git
+  revision: ac3ff9594a378b6d811e726f952603d800925289
+  branch: 0-17-stable
+  specs:
+    kaminari (0.17.0.alpha)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -80,9 +89,6 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.3)
-    kaminari (0.16.3)
-      actionpack (>= 3.0.0)
-      activesupport (>= 3.0.0)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -186,7 +192,7 @@ DEPENDENCIES
   honoka-rails (>= 3.3.6.3)
   jbuilder (~> 2.0)
   jquery-rails
-  kaminari
+  kaminari!
   listen (~> 3.0.5)
   puma (~> 3.0)
   rails (>= 5.0.0.rc1, < 5.1)

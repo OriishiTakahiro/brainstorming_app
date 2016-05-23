@@ -1,6 +1,6 @@
 %div{ class: 'center-block' }
   %h2 部屋一覧
-  = "部屋数:#{@rooms.size}"
+  = "部屋数:#{@count}"
 
   %table{ id: 'msg-table', class: 'table table-striped table-hover' }
     %thead
@@ -17,6 +17,7 @@
             = room.name
           %th
             = link_to '入室', action: :show, id: room.id
+  = paginate @rooms
 
   %div{ class: 'panel panel-info' }
     %div{ class: 'panel-info heading' }
@@ -37,4 +38,4 @@
         %input{type: :password, name: 'room[confpw]'}
         %br
         %br
-        = f.submit '送信', class: 'btn btn-primary' 
+        = f.submit '作成', class: 'btn btn-primary' 
