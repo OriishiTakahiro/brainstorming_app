@@ -1,21 +1,20 @@
-%div{ class: 'center-block' }
-  %h3
-    = @room.name
-  %h4
-    %div{id: 'count-idea'}
-      = "#{@messages.size} ideas"
+%p
+  %div{class: 'container'}
+    %h3
+      = @room.name
+    %h4
+      %div{id: 'count-idea'}
+        = "#{@messages.size} ideas"
+    %form{ id: 'message-form' }
+      %input{ type: :hidden, id: 'input-room', value: @room.id }
+      %label アイデア (Ctrl + Enterで送信可能)
+      %input{ type: :text, id: 'input-idea', class: 'form-control' }
+      %label 発案者名
+      %input{ type: :text, id: 'input-contributor', class: 'form-control' }
+      %br
+      %input{ type: :button, value: '送信', id: 'send-btn', class: 'btn btn-primary' }
 
-  %p
-    %div{class: 'container'}
-      %form{ id: 'message-form' }
-        %input{ type: :hidden, id: 'input-room', value: @room.id }
-        %label アイデア
-        %input{ type: :text, id: 'input-idea', class: 'form-control' }
-        %label 発案者名
-        %input{ type: :text, id: 'input-contributor', class: 'form-control' }
-        %br
-        %input{ type: :button, value: '送信', id: 'send-btn', class: 'btn btn-primary' }
-
+%p
   %div{class: :container}
     %div{class: 'table-responsive', style: 'height:380px;overflow-y:scroll'}
       %table{ id: 'msg-table', class: 'table table-striped table-hover table-headerfixed' }
@@ -23,7 +22,7 @@
           %tr
             %th 投稿内容
             %th 得票数
-            %th 投稿
+            %th
             %th 発案者
             %th 投稿日時
         %tbody

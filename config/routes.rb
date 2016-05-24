@@ -4,6 +4,9 @@ Rails.application.routes.draw do
 
   get 'rooms/list'
   get 'rooms/show'
+  get 'rooms/overview'
+  get 'rooms/update_overview'
+  delete 'rooms/delete'
   post 'rooms/new'
 
 	mount ActionCable.server => '/cable'

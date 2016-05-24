@@ -1,0 +1,35 @@
+:coffee
+  window.ajax_req = ->
+    console.log 'exec'
+    $.ajax({
+      type: 'GET'
+      url: '/rooms/update_overview?'
+      dataType: 'json'
+      data: { rooms : window.json_str }
+      cache: false
+    }).done( (json) ->
+      $.each( json, (key, val) ->
+        $('#count-' + key).text(val + " ideas")
+      )
+    )
+
+  $ ->
+    window.json_str = JSON.stringify($.map( $('[name=room]'), (e) -> e.id ))
+    setInterval('window.ajax_req()', 2000)
+
+%h1 Overview
+
+%table{ id: 'room-table', class: 'table table-striped table-hover' }
+  %thead
+    %tr
+      %th 班
+      %th アイデア数
+  %tbody
+    - @rooms.zip(@num_msg_list) do |e|
+      %tr
+        %th
+          %span{ id: "#{e[0].id}", name: :room }
+            = e[0].name
+        %th{ align: :right }
+          %span{ id: "count-#{e[0].id}" }
+            = "#{e[1]} ideas"

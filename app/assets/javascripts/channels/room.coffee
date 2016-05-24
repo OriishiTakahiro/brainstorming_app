@@ -24,13 +24,12 @@ sayMsg = ->
 	App.room.say(message, contributor, room)
 
 $(document).on 'click', (event) ->
-	console.log event.target.name
 	if(event.target.id == 'send-btn')
 		sayMsg()
 	if(event.target.name == 'vote')
 		App.room.vote(event.target.id)
 	if(event.target.name == 'copy')
-		$('#input-idea').val( $('#message-' + event.target.id).text() )
+		$('#input-idea').val( $('#message-' + event.target.id).text().replace(/ /g, '' ) )
 
 # execute sayMsg() when pressed Ctrl + Enter
 $ ->

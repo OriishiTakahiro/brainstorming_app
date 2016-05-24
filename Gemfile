@@ -54,3 +54,5 @@ gem 'kaminari', github: "amatsuda/kaminari", branch: '0-17-stable'
 
 gem 'sass-rails', '~> 5.0'
 gem 'honoka-rails', '>= 3.3.6.3'
+
+gem 'google-analytics-rails'

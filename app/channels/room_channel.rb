@@ -22,4 +22,6 @@ class RoomChannel < ApplicationCable::Channel
 		dat = { voted: message.voted, id: message.id }
 		ActionCable.server.broadcast 'room_channel', dat
 	end
+
+
 end
