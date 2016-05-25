@@ -1,6 +1,5 @@
 :coffee
   window.ajax_req = ->
-    console.log 'exec'
     $.ajax({
       type: 'GET'
       url: '/rooms/update_overview?'
@@ -12,24 +11,52 @@
         $('#count-' + key).text(val + " ideas")
       )
     )
+  window.timelimit = 0
+  window.left_time = 0
+  window.update_timelimit = ->
+    tmp = $('#time-limit').val().split(':')
+    window.timelimit = 0
+    window.timelimit += parseInt(tmp[0], 10)*3600
+    window.timelimit += parseInt(tmp[1], 10)*60
+    window.left_time = 0
+    date = new Date()
+    window.left_time = window.timelimit - (date.getHours()*3600 + date.getMinutes()*60 + date.getSeconds())
+    if(left_time < 0)
+      left_time = 0
+
+  window.countdown = ->
+    if(window.left_time > 0)
+      window.left_time--;
+      $('#time-counter').text('残り' + window.left_time + '秒')
 
   $ ->
     window.json_str = JSON.stringify($.map( $('[name=room]'), (e) -> e.id ))
     setInterval('window.ajax_req()', 2000)
+    setInterval('window.countdown()', 1000)
 
 %h1 Overview
 
-%table{ id: 'room-table', class: 'table table-striped table-hover' }
-  %thead
-    %tr
-      %th 班
-      %th アイデア数
-  %tbody
-    - @rooms.zip(@num_msg_list) do |e|
+%div{ style: 'float:left;' }
+  %span{ style: 'display:inline' }
+    %input{ type: :time, id: 'time-limit', value: '00:00:00' }
+    %input{ type: :button, value: '更新', id: 'time-limit-update', class: 'btn btn-default', onClick: 'window.update_timelimit()' }
+
+%div{ style: 'float:right;' }
+  %h2
+    %div{ id: 'time-counter' }
+
+%p
+  %table{ id: 'room-table', class: 'table table-striped table-hover' }
+    %thead
       %tr
-        %th
-          %span{ id: "#{e[0].id}", name: :room }
-            = e[0].name
-        %th{ align: :right }
-          %span{ id: "count-#{e[0].id}" }
-            = "#{e[1]} ideas"
+        %th 班
+        %th アイデア数
+    %tbody
+      - @rooms.zip(@num_msg_list) do |e|
+        %tr
+          %th
+            %span{ id: "#{e[0].id}", name: :room }
+              = e[0].name
+          %th{ align: :right }
+            %span{ id: "count-#{e[0].id}" }
+              = "#{e[1]} ideas"

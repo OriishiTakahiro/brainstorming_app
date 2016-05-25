@@ -56,3 +56,5 @@ gem 'sass-rails', '~> 5.0'
 gem 'honoka-rails', '>= 3.3.6.3'
 
 gem 'google-analytics-rails'
+
+gem 'bootstrap-timepicker-rails'
