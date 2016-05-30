@@ -26,7 +26,9 @@
 
   window.countdown = ->
     if(window.left_time > 0)
-      window.left_time--;
+      date = new Date()
+      window.left_time = window.timelimit - (date.getHours()*3600 + date.getMinutes()*60 + date.getSeconds())
+      window.left_time = if window.left_time > 0 then window.left_time else 0
       $('#time-counter').text('残り' + window.left_time + '秒')
 
   $ ->

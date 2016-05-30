@@ -1,10 +1,31 @@
+:coffee
+  $ ->
+    window.is_recording = false;
+    window.recognition = new webkitSpeechRecognition();
+    window.recognition.lang = 'ja-JP'
+    window.recognition.onresult = (e) ->
+      if(e.results.length > 0)
+        val = e.results[0][0].transcript
+        $('#input-idea').val(val)
+
+  $(document).on 'click', (event) ->
+    if(event.target.id == 'input-voice')
+      if(window.is_recording)
+        window.is_recording = false;
+        window.recognition.stop();
+      else
+        window.is_recording = true;
+        window.recognition.start();
+
 %p
   %div{class: 'container'}
-    %h3
-      = @room.name
-    %h4
-      %div{id: 'count-idea'}
-        = "#{@messages.size} ideas"
+    %div
+      %div{ style: 'display:inline-flex;' }
+        %h3
+          = "#{@room.name}"
+          = "(#{@messages.size} ideas)"
+    %div{ style: 'float:left' }
+      %button{ id: 'input-voice', class: 'glyphicon glyphicon-bullhorn' }
     %form{ id: 'message-form' }
       %input{ type: :hidden, id: 'input-room', value: @room.id }
       %label アイデア (Ctrl + Enterで送信可能)
